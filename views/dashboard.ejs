@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-50 p-6">
+
+    <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+        <!-- User Info -->
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyz7NWpGFyJLSfNrkJlntcLBdX28Ug0ygz2A&s" alt="User Avatar" class="h-16 w-16 rounded-full">
+                <div class="ml-4">
+                    <h2 class="text-xl font-bold"><%= user.name %></h2>
+                    <p>ID: <%= user.id %></p>
+                    <p>Mobile No: <%= user.mobile %></p>
+                    <p>Address: <%= user.address %></p>
+                </div>
+            </div>
+            <div>
+                <span class="bg-green-100 text-green-800 text-sm font-semibold px-2.5 py-0.5 rounded">
+                    Cur. Level: <%= user.currentLevel %> %
+                </span>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-4 mb-4">
+            <div class="bg-indigo-500 text-white p-4 rounded-lg">
+                <p>Login Date: <%= user.loginDate %></p>
+                <p>Total Team Members: <%= user.totalTeamMembers %></p>
+            </div>
+            <div class="bg-blue-500 text-white p-4 rounded-lg">
+                <p>Total Direct Team: <%= user.totalDirectTeam %></p>
+            </div>
+            <div class="bg-green-500 text-white p-4 rounded-lg">
+                <p>Total Business: Rs. <%= user.totalBusiness %></p>
+            </div>
+        </div>
+
+        <!-- Business Info -->
+        <div class="grid grid-cols-3 gap-4">
+            <div class="bg-gray-800 text-white p-4 rounded-lg">
+                <p>Self Business</p>
+                <p>Rs. <%= user.selfBusiness %></p>
+            </div>
+            <div class="bg-yellow-500 text-white p-4 rounded-lg">
+                <p>Team Business</p>
+                <p>Rs. <%= user.teamBusiness %></p>
+            </div>
+            <div class="bg-green-500 text-white p-4 rounded-lg">
+                <p>Total Business</p>
+                <p>Rs. <%= user.totalBusiness %></p>
+            </div>
+        </div>
+
+        <!-- Direct Sponsor Info -->
+        <h3 class="mt-6 mb-2 font-semibold">My Direct Sponsor</h3>
+        <table class="w-full bg-white rounded-lg shadow-md">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="text-left p-2">#</th>
+                    <th class="text-left p-2">Associate Name</th>
+                    <th class="text-left p-2">Associate ID</th>
+                    <th class="text-left p-2">Sponsor ID</th>
+                    <th class="text-left p-2">DOJ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% user.sponsors.forEach((sponsor, index) => { %>
+                    <tr>
+                        <td class="p-2"><%= index + 1 %></td>
+                        <td class="p-2"><%= sponsor.name %></td>
+                        <td class="p-2"><%= sponsor.associateId %></td>
+                        <td class="p-2"><%= sponsor.sponsorId %></td>
+                        <td class="p-2"><%= sponsor.doj %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <!-- Notice Section -->
+        <div class="mt-6 bg-pink-100 p-4 rounded-lg">
+            <p class="text-pink-800"><%= user.notice %></p>
+        </div>
+    </div>
+
+</body>
+</html>
